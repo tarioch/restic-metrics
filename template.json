@@ -2,7 +2,12 @@
     "builders": [{
         "type": "docker",
         "image": "python",
-        "commit": true
+        "commit": true,
+        "changes": [
+            "WORKDIR /opt/restic-metrics",
+            "EXPOSE 8000",
+            "ENTRYPOINT /usr/bin/python /opt/restic-metrics/app.py"
+        ]
     }],
     "provisioners": [{
         "type": "file",
