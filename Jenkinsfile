@@ -1,4 +1,6 @@
-podTemplate(label: "build-deploy-app", idleMinutes: 15, containers: [
+def label = 'build-deploy-app'
+
+podTemplate(label: label, idleMinutes: 15, containers: [
   containerTemplate(name: 'packer', image: 'hashicorp/packer', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl', command: 'cat', ttyEnabled: true),
