@@ -13,6 +13,7 @@
         "inline": [
             "cd /opt/restic-metrics",
             "pip install pipenv",
+            "pipenv lock",
             "pipenv install --deploy --system"
         ]
     }],
