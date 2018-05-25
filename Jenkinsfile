@@ -14,6 +14,7 @@ volumes: [
       container('packer') {
         checkout scm: scm
           sh "packer version"
+          sh "packer build template.json"
 //        sh "docker images"
       }
     }
