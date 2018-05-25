@@ -23,7 +23,6 @@
             "cd /opt/restic-metrics",
             "pip install pipenv",
             "pipenv lock",
-            "cat Pipfile",
             "cat Pipfile.lock",
             "pipenv install --deploy --system"
         ]
