@@ -6,14 +6,18 @@
         "changes": [
             "WORKDIR /opt/restic-metrics",
             "EXPOSE 8000",
-            "ENTRYPOINT /usr/bin/python /opt/restic-metrics/app.py"
+            "ENTRYPOINT /usr/local/bin/python /opt/restic-metrics/app.py"
         ]
     }],
     "provisioners": [{
         "type": "file",
         "source": "restic-metrics",
         "destination": "/opt"
-    }, {
+    },{
+        "type": "file",
+        "source": "Pipfile",
+        "destination": "/opt/restic-metrics"
+    },{
         "type": "shell",
         "inline": [
             "cd /opt/restic-metrics",
