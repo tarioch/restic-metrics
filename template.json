@@ -15,7 +15,8 @@
             "pip install pipenv",
             "pipenv install --deploy --system"
         ]
-    }, {
+    }],
+    "post-processors": [{
         "type": "docker-tag",
         "repository": "tarioch/restic-metrics"
     }]
