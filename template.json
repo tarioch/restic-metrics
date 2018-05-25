@@ -1,8 +1,22 @@
 {
     "builders": [{
-            "type": "docker",
-            "image": "python",
-            "commit": true
-        }
-    ]
+        "type": "docker",
+        "image": "python",
+        "commit": true
+    }],
+    "provisioners": [{
+        "type": "file",
+        "source": "restic-metrics",
+        "destination": "/opt"
+    }, {
+        "type": "shell",
+        "inline": [
+            "cd /opt/restic-metrics",
+            "pip install pipenv",
+            "pipenv install --deploy --system"
+        ]
+    }, {
+        "type": "docker-tag",
+        "repository": "tarioch/restic-metrics"
+    }]
 }
