@@ -16,7 +16,7 @@
     },{
         "type": "file",
         "source": "Pipfile",
-        "destination": "/opt/restic-metrics"
+        "destination": "/opt/restic-metrics/"
     },{
         "type": "shell",
         "inline": [
