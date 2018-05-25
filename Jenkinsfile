@@ -13,7 +13,8 @@ volumes: [
     stage('Create Docker images') {
       container('docker') {
         checkout scm: scm
-        sh "wget -N https://releases.hashicorp.com/packer/${packerVersion}/packer_${packerVersion}_linux_amd64.zip"
+        sh "rm -f packer_${packerVersion}_linux_amd64.zip"
+        sh "wget https://releases.hashicorp.com/packer/${packerVersion}/packer_${packerVersion}_linux_amd64.zip"
         sh "unzip packer_${packerVersion}_linux_amd64.zip -d /bin"
         sh "packer version"
         sh "packer build -color=false template.json"
