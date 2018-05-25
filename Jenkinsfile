@@ -1,6 +1,7 @@
 def label = "worker-${UUID.randomUUID().toString()}"
 
 podTemplate(label: label, containers: [
+  containerTemplate(name: 'packer', image: 'hashicorp/packer', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm', command: 'cat', ttyEnabled: true)
@@ -10,9 +11,10 @@ volumes: [
 ]) {
   node(label) {
     stage('Create Docker images') {
-      container('docker') {
+      container('packer') {
         checkout scm: scm
-        sh "docker images"
+          sh "packer version"
+//        sh "docker images"
       }
     }
     stage('Run kubectl') {
