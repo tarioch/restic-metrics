@@ -1,6 +1,4 @@
-def label = "worker-${UUID.randomUUID().toString()}"
-
-podTemplate(label: label, containers: [
+podTemplate(label: "build-deploy-app", idleMinutes: 15, containers: [
   containerTemplate(name: 'packer', image: 'hashicorp/packer', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl', command: 'cat', ttyEnabled: true),
@@ -15,7 +13,7 @@ volumes: [
         checkout scm: scm
           sh "packer version"
           sh "packer build template.json"
-//        sh "docker images"
+          sh "docker images"
       }
     }
     stage('Run kubectl') {
