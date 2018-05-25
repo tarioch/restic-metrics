@@ -1,5 +1,8 @@
 {
-    "type": "docker",
-    "image": "python",
-    "commit": true
-  }
+    "builders": [{
+            "type": "docker",
+            "image": "python",
+            "commit": true
+        }
+    ]
+}
