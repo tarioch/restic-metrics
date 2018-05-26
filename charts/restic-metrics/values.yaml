@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: tarioch/restic-metrics 
   tag: latest 
-  pullPolicy: Always 
+  pullPolicy: IfNotPresent 
 
 service:
   type: ClusterIP
