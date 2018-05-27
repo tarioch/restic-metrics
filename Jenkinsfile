@@ -34,7 +34,11 @@ volumes: [
     stage('Run helm') {
       container('helm') {
         withCredentials([file(credentialsId: 'kube-config', variable: 'KUBECONFIG')]) {
-            sh "helm list"
+            checkout scm: scm
+            dir('charts') {
+                sh "helm delete --purge restic-metrics"
+                sh "helm install restic-metrics --name restic-metrics"
+            }
         }
       }
     }
